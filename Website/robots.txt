@@ -1,0 +1,173 @@
+
+# ╔══════════════════════════════════════════════════════╗
+# ║                                                      ║
+# ║   BETTERYTS  //  BETTER YOUR YTS EXPERIENCE          ║
+# ║   A little better. A little fluffier.                ║
+# ║                                                      ║
+# ║   robots.txt · crawler access policy                  ║
+# ║   https://vpm.foulfoxhacks.dev                        ║
+# ║                                                      ║
+# ║   Built with love, code, and questionable snoot      ║
+# ║   Published and managed by Sammy The Femboy          ║
+# ║   FoulFoxHacks                                       ║
+# ║                                                      ║
+# ╚══════════════════════════════════════════════════════╝
+#
+# "wiggles snoot"
+# uhhhh... just tasty, nom.
+# why you looking at my site's crawlability, munchkin?
+#
+# ----------------------------------------------------------------------
+# GENERAL POLICY
+# ----------------------------------------------------------------------
+# - Public search engines are welcome to crawl and index public pages.
+# - Image, video, and social preview crawlers are welcome.
+# - SEO auditing and search validation are permitted.
+# - User-directed AI search and retrieval are permitted.
+# - Dedicated AI model-training and bulk-dataset crawlers are restricted.
+# - Private APIs and cart-related endpoints are not intended for indexing.
+#
+# Search visibility is controlled through crawler directives.
+# Sensitive or non-indexable pages should additionally use page-level
+# meta robots noindex or X-Robots-Tag: noindex.
+#
+# ----------------------------------------------------------------------
+# CONTENT SIGNALS
+# ----------------------------------------------------------------------
+# These signals communicate BetterYTS content-use preferences.
+#
+# search:   Building search indexes and returning search results.
+# ai-input: Using content as input for generative AI systems.
+# ai-train: Training or fine-tuning AI models.
+# use:      How AI systems may consume website content.
+#
+# Active policy:
+# - Search indexing: permitted.
+# - AI training: prohibited.
+# - Reference use: permitted.
+# - AI-input: intentionally unspecified.
+#
+# ANY RESTRICTIONS EXPRESSED VIA CONTENT SIGNALS ARE EXPRESS
+# RESERVATIONS OF RIGHTS UNDER ARTICLE 4 OF EU DIRECTIVE 2019/790.
+#
+# ----------------------------------------------------------------------
+# SEARCH ENGINES AND AI SEARCH DISCOVERY
+# ----------------------------------------------------------------------
+User-agent: Googlebot
+User-agent: Googlebot-Image
+User-agent: Googlebot-Video
+User-agent: Googlebot-News
+User-agent: Bingbot
+User-agent: DuckDuckBot
+User-agent: Applebot
+User-agent: Slurp
+User-agent: YandexBot
+User-agent: Baiduspider
+User-agent: PetalBot
+User-agent: Yeti
+User-agent: MojeekBot
+User-agent: SeznamBot
+User-agent: Teoma
+User-agent: Amzn-SearchBot
+User-agent: Amzn-User
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: DuckAssistBot
+User-agent: Gemini-Deep-Research
+Content-Signal: search=yes,ai-train=no,use=reference
+Allow: /
+Disallow: /api/
+
+# ----------------------------------------------------------------------
+# SOCIAL MEDIA AND LINK PREVIEWS
+# ----------------------------------------------------------------------
+User-agent: facebookexternalhit
+User-agent: Facebot
+User-agent: meta-externalfetcher
+User-agent: meta-webindexer
+User-agent: meta-externalads
+User-agent: Twitterbot
+User-agent: LinkedInBot
+User-agent: Discordbot
+User-agent: Pinterestbot
+User-agent: Slackbot
+User-agent: TelegramBot
+User-agent: WhatsApp
+User-agent: ViberBot
+Content-Signal: search=yes,ai-train=no,use=reference
+Allow: /
+Disallow: /api/
+
+# ----------------------------------------------------------------------
+# SEO AUDITING, PERFORMANCE, AND AD VALIDATION
+# ----------------------------------------------------------------------
+User-agent: Google-InspectionTool
+User-agent: Storebot-Google
+User-agent: AdsBot-Google
+User-agent: Mediapartners-Google
+User-agent: OAI-AdsBot
+User-agent: AhrefsBot
+User-agent: AhrefsSiteAudit
+User-agent: SemrushBot
+User-agent: SiteAuditBot
+User-agent: Rogerbot
+User-agent: MJ12bot
+User-agent: DotBot
+User-agent: DataForSeoBot
+User-agent: Chrome-Lighthouse
+Content-Signal: search=yes,ai-train=no,use=reference
+Allow: /
+Disallow: /api/
+
+# ----------------------------------------------------------------------
+# DEFAULT PUBLIC WEB ACCESS
+# ----------------------------------------------------------------------
+User-agent: *
+Content-Signal: search=yes,ai-train=no,use=reference
+Allow: /
+Disallow: /api/
+
+# ----------------------------------------------------------------------
+# DEDICATED AI TRAINING AND BULK-DATASET CRAWLERS
+# ----------------------------------------------------------------------
+# Search-specific and user-directed counterparts remain allowed above.
+#
+User-agent: Applebot-Extended
+User-agent: Google-Extended
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: anthropic-ai
+User-agent: Claude-Web
+User-agent: Amazonbot
+User-agent: meta-externalagent
+User-agent: FacebookBot
+User-agent: Bytespider
+User-agent: CCBot
+User-agent: cohere-ai
+User-agent: cohere-training-data-crawler
+User-agent: Diffbot
+User-agent: Omgilibot
+User-agent: ImagesiftBot
+User-agent: PanguBot
+User-agent: Timpibot
+User-agent: AI2Bot
+User-agent: Ai2Bot-Dolma
+User-agent: AI2Bot-DeepResearchEval
+User-agent: DigitalOceanGenAICrawler
+User-agent: img2dataset
+User-agent: laion-huggingface-processor
+Disallow: /
+
+# ----------------------------------------------------------------------
+# SITEMAP
+# ----------------------------------------------------------------------
+Sitemap: https://vpm.foulfoxhacks.dev/sitemap.xml
+
+# ----------------------------------------------------------------------
+# END OF POLICY
+# BETTERYTS // be nice, crawl responsibly, and bring snacks.
+# ----------------------------------------------------------------------
