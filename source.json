@@ -1,0 +1,18 @@
+{
+  "name": "FoulFoxHacks Packages",
+  "id": "com.foulfoxhacks.vpm",
+  "url": "https://vpm.foulfoxhacks.dev/index.json",
+  "author": {
+    "name": "FoulFoxHacks (Sammy The Femboy Puppy)",
+    "url": "https://akasammythepuppy.me"
+  },
+  "description": "VRChat world tools by FoulFoxHacks, home of BetterYTS by FoulFoxHacks: in-world ad-free YouTube search, ProTV integration and Unity editor tools.",
+  "infoLink": {
+    "url": "https://github.com/foulfoxhacks/betteryts-vrchat",
+    "text": "Source & docs on GitHub"
+  },
+  "bannerUrl": "banner.png",
+  "githubRepos": [
+    "foulfoxhacks/betteryts-vrchat"
+  ]
+}
