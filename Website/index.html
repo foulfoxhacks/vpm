@@ -3,7 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Title -->
   <title>{{~ listingInfo.Name ~}}</title>
+
+  <!-- Description -->
+  <meta name="description" content="{{~ if listingInfo.Description; listingInfo.Description; else; 'Browse and install VPM packages from FoulFoxHacks. Community-made VRChat packages and tools available through the VPM repository.'; end; ~}}">
+
+  <!-- Keywords -->
+  <meta name="keywords" content="FoulFoxHacks, VPM, VRChat, packages, VRChat packages, VPM repository, VRChat tools, community packages">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="{{ listingInfo.Url }}">
+
+  <!-- Robots -->
+  <meta name="robots" content="index, follow">
+
+  <!-- Author -->
+  <meta name="author" content="{{ listingInfo.Author.Name }}">
+
+  <!-- Publisher -->
+  <meta name="publisher" content="FoulFoxHacks">
+
+  <!-- Open Graph (recommended) -->
+  <meta property="og:title" content="{{~ listingInfo.Name ~}}">
+  <meta property="og:description" content="{{~ if listingInfo.Description; listingInfo.Description; else; 'Browse and install VPM packages from FoulFoxHacks.'; end; ~}}">
+  <meta property="og:url" content="{{ listingInfo.Url }}">
+  <meta property="og:type" content="website">
+  {{~ if listingInfo.BannerImage; ~}}
+  <meta property="og:image" content="{{ listingInfo.BannerImageUrl }}">
+  {{~ end; ~}}
+
   <script type="module" src="https://unpkg.com/@fluentui/web-components@2.6.1"></script>
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
