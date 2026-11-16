@@ -4,8 +4,8 @@
 # ║   BETTERYTS  //  BETTER YOUR YTS EXPERIENCE          ║
 # ║   A little better. A little fluffier.                ║
 # ║                                                      ║
-# ║   robots.txt · crawler access policy                  ║
-# ║   https://vpm.foulfoxhacks.dev                        ║
+# ║   robots.txt · crawler access policy                 ║
+# ║   https://vpm.foulfoxhacks.dev                       ║
 # ║                                                      ║
 # ║   Built with love, code, and questionable snoot      ║
 # ║   Published and managed by Sammy The Femboy          ║
