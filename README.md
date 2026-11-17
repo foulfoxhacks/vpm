@@ -24,4 +24,4 @@ Built from VRChat's [template-package-listing](https://github.com/vrchat-communi
 - `Website/CNAME` and the Pages custom-domain setting serve it at `vpm.foulfoxhacks.dev` (DNS: `CNAME vpm → foulfoxhacks.github.io`, not proxied).
 - Pages source must be set to **GitHub Actions** (Settings > Pages).
 
-Branding uses the [akasammythepuppy.me](https://akasammythepuppy.me) palette; see `Website/styles.css` and the theme block in `Website/app.js`.
+The page is styled after [akasammythepuppy.me](https://akasammythepuppy.me) (warm near-black, cream/copper/gold, heavy uppercase type, sunset glow) in plain HTML/CSS with no UI library; see `Website/styles.css`. `Website/index.html` is a Scriban template that package-list-action fills with every package at build time, so the package cards are in the served HTML. `Website/app.js` only adds the one-click VCC link, copy buttons and search.
