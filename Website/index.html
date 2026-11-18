@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="dark">
-  <meta name="theme-color" content="#050302">
+  <meta name="theme-color" content="#0b0806">
   <title>{{~ listingInfo.Name ~}}</title>
   <meta name="description" content="{{~ if listingInfo.Description; listingInfo.Description; else; 'VRChat world tools by FoulFoxHacks, home of BetterYTS by FoulFoxHacks: in-world ad-free YouTube search, ProTV integration and Unity editor tools.'; end; ~}}">
   <meta name="keywords" content="FoulFoxHacks, VPM, VRChat, packages, VRChat packages, VPM repository, VRChat tools, BetterYTS, ProTV, community packages">
@@ -44,117 +44,89 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-  <a class="skip" href="#packages">Skip to packages</a>
-  <div class="glow" aria-hidden="true">
-    <span class="orb orb-1"></span><span class="orb orb-2"></span><span class="orb orb-3"></span>
-    <span class="ring ring-1"></span><span class="ring ring-2"></span>
-  </div>
-
-  <header class="topbar">
-    <a class="brand" href="./" aria-label="{{ listingInfo.Name }} home">
+  <main class="wrap">
+    <section class="intro">
       <span class="avatar" aria-hidden="true"></span>
-      <span class="brand-name">FoulFoxHacks</span>
-    </a>
-    <nav class="nav" aria-label="Main">
-      <a class="pill" href="#packages">Packages</a>
-      <a class="pill" href="#how">How to add</a>
-      <a class="pill" href="https://yts.foulfoxhacks.dev" target="_blank" rel="noopener">BetterYTS</a>
-      <a class="pill" href="https://akasammythepuppy.me" target="_blank" rel="noopener">akasammythepuppy.me</a>
-    </nav>
-    <a class="pill pill-gold js-vcc" href="#how">Add to VCC</a>
-  </header>
-
-  <main>
-    <section class="hero" aria-labelledby="title">
-      <div class="hero-art" aria-hidden="true"></div>
-      <p class="kicker">VRChat Creator Companion listing · home of BetterYTS</p>
-      <h1 id="title"><span class="h1-plain">FoulFoxHacks</span> <span class="h1-grad">Packages</span></h1>
-      {{~ if listingInfo.Description; ~}}<p class="lede">{{ listingInfo.Description }}</p>{{~ end; ~}}
-      <p class="byline">Published by <a href="{{ listingInfo.Author.Url }}" target="_blank" rel="noopener">{{ listingInfo.Author.Name }}</a>
+      <h1>{{~ listingInfo.Name ~}}</h1>
+      {{~ if listingInfo.Description; ~}}<p class="desc">{{ listingInfo.Description }}</p>{{~ end; ~}}
+      <p class="meta">Published by <a href="{{ listingInfo.Author.Url }}" target="_blank" rel="noopener">{{ listingInfo.Author.Name }}</a>
         {{~ if listingInfo.InfoLink.Url ~}} · <a href="{{ listingInfo.InfoLink.Url }}" target="_blank" rel="noopener">{{ if listingInfo.InfoLink.Text; listingInfo.InfoLink.Text; else; 'Learn more'; end; }}</a>{{~ end; ~}}</p>
 
-      <div class="listing-bar">
-        <span class="listing-label">Listing URL</span>
-        <code class="listing-url" id="listingUrl">{{ listingInfo.Url }}</code>
-        <button class="copy" type="button" data-copy="{{ listingInfo.Url }}">Copy</button>
+      <div class="add-row">
+        <label class="visually-hidden" for="listingUrl">VCC listing URL</label>
+        <input id="listingUrl" class="url" type="text" readonly value="{{ listingInfo.Url }}">
+        <a class="btn btn-primary js-vcc" href="#help">Add to VCC</a>
+        <button class="btn copy" type="button" data-copy="{{ listingInfo.Url }}">Copy</button>
       </div>
-      <div class="cta-row">
-        <a class="cta cta-primary js-vcc" href="#how">Add to VCC <span aria-hidden="true">↗</span></a>
-        <a class="cta" href="#packages">Browse packages <span aria-hidden="true">↓</span></a>
-      </div>
+      <details class="help" id="help">
+        <summary>How do I add this listing?</summary>
+        <p><strong>Add to VCC</strong> opens the VRChat Creator Companion and adds this listing. To add it by hand instead:</p>
+        <ul>
+          <li>In the Creator Companion, open <strong>Settings</strong>, then the <strong>Packages</strong> tab.</li>
+          <li>Click <strong>Add Repository</strong>, paste the listing URL above, click <strong>Add</strong> and confirm.</li>
+          <li>Open a project, choose <strong>Manage Project</strong>, and add the packages you want.</li>
+        </ul>
+        <p>More in the <a href="https://vcc.docs.vrchat.com" target="_blank" rel="noopener">VCC docs</a>.</p>
+      </details>
     </section>
 
-    <section id="packages" class="section" aria-labelledby="packagesTitle">
-      <div class="section-head">
+    <section class="packages" aria-labelledby="packagesTitle">
+      <div class="toolbar">
         <h2 id="packagesTitle">Packages</h2>
         <label class="search">
           <span class="visually-hidden">Search packages</span>
-          <input id="searchInput" type="search" placeholder="Search packages…" autocomplete="off">
+          <input id="searchInput" type="search" placeholder="Search packages" autocomplete="off">
         </label>
       </div>
+      <table class="pkg-table">
+        <thead>
+          <tr><th scope="col">Package</th><th scope="col">Version</th><th scope="col"><span class="visually-hidden">Actions</span></th></tr>
+        </thead>
+        <tbody id="packageRows">
+          {{~ for package in packages ~}}
+          <tr class="pkg" data-search="{{ package.DisplayName }} {{ package.Name }} {{ package.Description }}">
+            <td class="pkg-main">
+              <div class="pkg-name">{{ package.DisplayName }}</div>
+              <div class="pkg-desc">{{ package.Description }}</div>
+              <code class="pkg-id">{{ package.Name }}</code>
+              <details class="pkg-more">
+                <summary>Details</summary>
+                <dl>
+                  <dt>Author</dt>
+                  <dd>{{~ if package.Author.Url ~}}<a href="{{ package.Author.Url }}" target="_blank" rel="noopener">{{ package.Author.Name }}</a>{{~ else ~}}{{ package.Author.Name }}{{~ end ~}}</dd>
+                  <dt>Dependencies</dt>
+                  <dd><ul class="deps">
+                    {{~ for dependency in package.Dependencies ~}}
+                    <li><code>{{ dependency.Name }}</code> {{ dependency.Version }}</li>
+                    {{~ end ~}}
+                  </ul></dd>
+                  <dt>Keywords</dt>
+                  <dd class="chips">{{~ for keyword in package.Keywords ~}}<span class="chip">{{ keyword }}</span>{{~ end ~}}</dd>
+                  {{~ if package.License ~}}
+                  <dt>License</dt>
+                  <dd>{{~ if package.LicensesUrl ~}}<a href="{{ package.LicensesUrl }}" target="_blank" rel="noopener">{{ package.License }}</a>{{~ else ~}}{{ package.License }}{{~ end ~}}</dd>
+                  {{~ end ~}}
+                </dl>
+              </details>
+            </td>
+            <td class="pkg-version"><span class="version">{{ package.Version }}</span></td>
+            <td class="pkg-actions">
+              <a class="btn btn-primary btn-small js-vcc" href="#help">Add to VCC</a>
+              <a class="btn btn-small" href="{{ package.ZipUrl }}" rel="noopener">.zip</a>
+            </td>
+          </tr>
+          {{~ end ~}}
+        </tbody>
+      </table>
       <p class="empty" id="noResults" hidden>No packages match that search.</p>
-      <div class="grid" id="packageGrid">
-        {{~ for package in packages ~}}
-        <article class="pkg" data-search="{{ package.DisplayName }} {{ package.Name }} {{ package.Description }}">
-          <header class="pkg-head">
-            <h3>{{ package.DisplayName }}</h3>
-            <span class="badge">v{{ package.Version }}</span>
-          </header>
-          <p class="pkg-desc">{{ package.Description }}</p>
-          <code class="pkg-id">{{ package.Name }}</code>
-          <details class="pkg-more">
-            <summary>Details</summary>
-            <dl>
-              <dt>Author</dt>
-              <dd>{{~ if package.Author.Url ~}}<a href="{{ package.Author.Url }}" target="_blank" rel="noopener">{{ package.Author.Name }}</a>{{~ else ~}}{{ package.Author.Name }}{{~ end ~}}</dd>
-              <dt>Needs</dt>
-              <dd><ul class="deps">
-                {{~ for dependency in package.Dependencies ~}}
-                <li><code>{{ dependency.Name }}</code> {{ dependency.Version }}</li>
-                {{~ end ~}}
-              </ul></dd>
-              <dt>Keywords</dt>
-              <dd class="chips">
-                {{~ for keyword in package.Keywords ~}}<span class="chip">{{ keyword }}</span>{{~ end ~}}
-              </dd>
-              {{~ if package.License ~}}
-              <dt>License</dt>
-              <dd>{{~ if package.LicensesUrl ~}}<a href="{{ package.LicensesUrl }}" target="_blank" rel="noopener">{{ package.License }}</a>{{~ else ~}}{{ package.License }}{{~ end ~}}</dd>
-              {{~ end ~}}
-            </dl>
-          </details>
-          <div class="pkg-actions">
-            <a class="cta cta-small cta-primary js-vcc" href="#how">Add to VCC</a>
-            <a class="cta cta-small" href="{{ package.ZipUrl }}" rel="noopener">Download .zip</a>
-          </div>
-        </article>
-        {{~ end ~}}
-      </div>
-    </section>
-
-    <section id="how" class="section" aria-labelledby="howTitle">
-      <div class="section-head"><h2 id="howTitle">Add it to <span class="h1-grad">VCC</span></h2></div>
-      <p class="section-lede"><strong>Add to VCC</strong> opens the Creator Companion and adds this listing in one click. If that doesn't open it, add it by hand:</p>
-      <ol class="steps">
-        <li><span class="step-n">01</span><span>Open the VRChat Creator Companion and go to <strong>Settings</strong>.</span></li>
-        <li><span class="step-n">02</span><span>Open the <strong>Packages</strong> tab and click <strong>Add Repository</strong>.</span></li>
-        <li><span class="step-n">03</span><span>Paste the listing URL below, click <strong>Add</strong> and confirm.</span></li>
-        <li><span class="step-n">04</span><span>Open a world project and add the packages you want from <strong>Manage Project</strong>.</span></li>
-      </ol>
-      <div class="listing-bar">
-        <span class="listing-label">Listing URL</span>
-        <code class="listing-url">{{ listingInfo.Url }}</code>
-        <button class="copy" type="button" data-copy="{{ listingInfo.Url }}">Copy</button>
-      </div>
-      <p class="fine">More about package listings in the <a href="https://vcc.docs.vrchat.com" target="_blank" rel="noopener">VCC docs</a>.</p>
     </section>
   </main>
 
-  <footer class="footer">
-    <span>Made by <a href="https://akasammythepuppy.me" target="_blank" rel="noopener">Sammy The Femboy Puppy</a></span>
-    <span><a href="https://yts.foulfoxhacks.dev" target="_blank" rel="noopener">BetterYTS by FoulFoxHacks</a></span>
-    <span><a href="https://github.com/foulfoxhacks/betteryts-vrchat" target="_blank" rel="noopener">Source</a></span>
-    <span class="tag">#KeepItMello</span>
+  <footer class="footer wrap">
+    <span>Published by <a href="{{ listingInfo.Author.Url }}" target="_blank" rel="noopener">{{ listingInfo.Author.Name }}</a></span>
+    <a href="https://github.com/foulfoxhacks/betteryts-vrchat" target="_blank" rel="noopener">Source</a>
+    <a href="index.json">index.json</a>
+    <a href="https://yts.foulfoxhacks.dev" target="_blank" rel="noopener">BetterYTS</a>
   </footer>
   <script type="module" src="app.js"></script>
 </body>
